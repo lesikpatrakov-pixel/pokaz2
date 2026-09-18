@@ -117,20 +117,27 @@
     color: var(--black);
   }
 
-  /* HERO */
+  /* HERO — теперь по центру */
   .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     padding: 120px 60px 60px;
     position: relative;
     background:
-      linear-gradient(90deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.9) 100%),
-      radial-gradient(circle at 70% 50%, rgba(201,169,97,0.15) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.75) 50%, rgba(10,10,10,0.95) 100%),
+      radial-gradient(circle at 50% 50%, rgba(201,169,97,0.18) 0%, transparent 60%),
       url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1600') center/cover;
   }
 
-  .hero-content { max-width: 700px; }
+  .hero-content {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .hero-subtitle {
     color: var(--gold);
@@ -140,12 +147,14 @@
     margin-bottom: 20px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 15px;
   }
 
-  .hero-subtitle::before {
+  .hero-subtitle::before,
+  .hero-subtitle::after {
     content: '';
-    width: 50px;
+    width: 40px;
     height: 1px;
     background: var(--gold);
   }
@@ -170,11 +179,16 @@
   .hero p {
     color: var(--muted);
     font-size: 17px;
-    max-width: 500px;
-    margin-bottom: 40px;
+    max-width: 600px;
+    margin: 0 auto 40px;
   }
 
-  .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+  .hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
   /* SECTIONS */
   section { padding: 100px 60px; }
@@ -207,7 +221,7 @@
     font-weight: 400;
   }
 
-  /* SERVICES */
+  /* SERVICES — карточки по центру */
   .services { background: var(--dark); }
 
   .services-grid {
@@ -225,6 +239,10 @@
     transition: 0.4s;
     position: relative;
     overflow: hidden;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .service-card::before {
@@ -236,7 +254,7 @@
     height: 3px;
     background: var(--gold);
     transform: scaleX(0);
-    transform-origin: left;
+    transform-origin: center;
     transition: 0.4s;
   }
 
@@ -279,7 +297,19 @@
     font-weight: 700;
     font-family: Georgia, serif;
     padding-top: 20px;
-    border-top: 1px solid rgba(201, 169, 97, 0.2);
+    position: relative;
+    margin-top: auto;
+  }
+
+  .service-price::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 1px;
+    background: rgba(201, 169, 97, 0.4);
   }
 
   /* ABOUT */
@@ -431,21 +461,26 @@
 
   .cta .btn:hover { background: #222; }
 
-  /* CONTACTS */
+  /* CONTACTS — аккуратно по центру */
   .contacts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
+    gap: 30px;
     max-width: 1100px;
     margin: 0 auto;
   }
 
   .contact-item {
     text-align: center;
-    padding: 35px 25px;
+    padding: 40px 25px;
     border: 1px solid rgba(201, 169, 97, 0.15);
     transition: 0.3s;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
   }
 
   .contact-item::before {
@@ -476,7 +511,10 @@
     margin-top: 10px;
   }
 
-  .contact-item p { color: var(--text); font-size: 15px; }
+  .contact-item p {
+    color: var(--text);
+    font-size: 15px;
+  }
 
   /* FOOTER */
   footer {
@@ -566,6 +604,7 @@
     text-transform: uppercase;
     letter-spacing: -1px;
     margin-bottom: 8px;
+    text-align: center;
   }
 
   .modal h2 .accent {
@@ -579,6 +618,7 @@
     color: var(--muted);
     font-size: 14px;
     margin-bottom: 30px;
+    text-align: center;
   }
 
   .form-group { margin-bottom: 22px; }
@@ -616,7 +656,7 @@
     gap: 15px;
   }
 
-  /* ===== SERVICE SELECTOR ===== */
+  /* SERVICE SELECTOR */
   .service-selector {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -687,7 +727,7 @@
     box-shadow: 0 0 8px var(--gold);
   }
 
-  /* ===== CALENDAR ===== */
+  /* CALENDAR */
   .calendar {
     background: var(--black);
     border: 1px solid rgba(201, 169, 97, 0.2);
@@ -714,10 +754,7 @@
 
   .calendar-month span { color: var(--gold); }
 
-  .calendar-nav {
-    display: flex;
-    gap: 6px;
-  }
+  .calendar-nav { display: flex; gap: 6px; }
 
   .calendar-nav button {
     width: 32px;
@@ -739,10 +776,7 @@
     color: var(--black);
   }
 
-  .calendar-nav button:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
+  .calendar-nav button:disabled { opacity: 0.3; cursor: not-allowed; }
 
   .calendar-weekdays {
     display: grid;
@@ -806,10 +840,7 @@
     text-decoration: line-through;
   }
 
-  .calendar-day.empty {
-    pointer-events: none;
-    visibility: hidden;
-  }
+  .calendar-day.empty { pointer-events: none; visibility: hidden; }
 
   /* Time slots */
   .time-slots {
@@ -858,7 +889,6 @@
   }
 
   .selected-info.show { display: block; }
-
   .selected-info strong { color: var(--gold); }
 
   .modal .btn {
@@ -951,6 +981,7 @@
   <button class="btn" onclick="openModal()">Записаться</button>
 </header>
 
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-content">
     <div class="hero-subtitle">Барбершоп премиум-класса</div>
@@ -963,6 +994,7 @@
   </div>
 </section>
 
+<!-- SERVICES -->
 <section class="services" id="services">
   <div class="section-title">
     <span class="label">Что мы делаем</span>
@@ -1008,6 +1040,7 @@
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
   <div class="about-grid">
     <div class="about-image"></div>
@@ -1033,6 +1066,7 @@
   </div>
 </section>
 
+<!-- MASTERS -->
 <section class="masters" id="masters">
   <div class="section-title">
     <span class="label">Наша команда</span>
@@ -1057,12 +1091,14 @@
   </div>
 </section>
 
+<!-- CTA -->
 <section class="cta">
   <h2>Готовы к переменам?</h2>
   <p>Запишитесь онлайн и получите скидку 10% на первое посещение</p>
   <button class="btn" onclick="openModal()">Записаться сейчас</button>
 </section>
 
+<!-- CONTACTS -->
 <section id="contacts">
   <div class="section-title">
     <span class="label">Как нас найти</span>
@@ -1114,7 +1150,6 @@
           </div>
         </div>
 
-        <!-- SERVICE SELECTOR -->
         <div class="form-group">
           <label>Выберите услугу</label>
           <div class="service-selector" id="serviceSelector">
@@ -1163,7 +1198,6 @@
           </div>
         </div>
 
-        <!-- CALENDAR -->
         <div class="form-group">
           <label>Выберите дату</label>
           <div class="calendar">
@@ -1182,7 +1216,6 @@
           <input type="hidden" name="date" id="dateInput" required>
         </div>
 
-        <!-- TIME SLOTS -->
         <div class="form-group">
           <label>Выберите время</label>
           <div class="time-slots" id="timeSlots"></div>
@@ -1282,18 +1315,15 @@
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    // Disable prev if we're at current month
     const isCurrentMonth = year === today.getFullYear() && month === today.getMonth();
     prevBtn.disabled = isCurrentMonth;
 
-    // Disable next if more than 2 months ahead
     const maxDate = new Date();
     maxDate.setMonth(maxDate.getMonth() + 2);
     const isMaxMonth = year === maxDate.getFullYear() && month === maxDate.getMonth();
     nextBtn.disabled = isMaxMonth;
 
     const firstDay = new Date(year, month, 1);
-    // Monday = 0
     let startOffset = firstDay.getDay() - 1;
     if (startOffset < 0) startOffset = 6;
 
@@ -1317,17 +1347,9 @@
       const thisDate = new Date(year, month, d);
       thisDate.setHours(0, 0, 0, 0);
 
-      if (thisDate < today) {
-        btn.disabled = true;
-      }
-
-      if (thisDate.getTime() === today.getTime()) {
-        btn.classList.add('today');
-      }
-
-      if (selectedDate && thisDate.getTime() === selectedDate.getTime()) {
-        btn.classList.add('selected');
-      }
+      if (thisDate < today) btn.disabled = true;
+      if (thisDate.getTime() === today.getTime()) btn.classList.add('today');
+      if (selectedDate && thisDate.getTime() === selectedDate.getTime()) btn.classList.add('selected');
 
       btn.addEventListener('click', () => {
         selectedDate = thisDate;
@@ -1360,7 +1382,6 @@
 
   function renderTimeSlots() {
     timeSlotsEl.innerHTML = '';
-    // Выезжаем из логики: если дата не выбрана — показываем все слоты, но пометим что сначала дата
     const isToday = selectedDate && isSameDay(selectedDate, new Date());
     const currentHour = new Date().getHours();
 
@@ -1370,12 +1391,8 @@
       btn.className = 'time-slot';
       btn.textContent = time;
 
-      // Если сегодня — скрываем прошедшие часы
-      if (isToday && parseInt(time) <= currentHour) {
-        btn.disabled = true;
-      }
+      if (isToday && parseInt(time) <= currentHour) btn.disabled = true;
 
-      // Случайная "занятость" для реализма
       const seed = (selectedDate ? selectedDate.getDate() : 1) + parseInt(time);
       if (seed % 7 === 0) btn.disabled = true;
 
@@ -1406,16 +1423,14 @@
     const service = form.querySelector('input[name="service"]:checked');
     const parts = [];
     if (service) {
-      const price = service.dataset.price;
-      parts.push(`<strong>${service.value}</strong> — ${price} ₽`);
+      parts.push(`<strong>${service.value}</strong> — ${service.dataset.price} ₽`);
     }
     if (selectedDate) {
       const d = selectedDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
       parts.push(`Дата: <strong>${d}</strong>`);
     }
-    if (selectedTime) {
-      parts.push(`Время: <strong>${selectedTime}</strong>`);
-    }
+    if (selectedTime) parts.push(`Время: <strong>${selectedTime}</strong>`);
+
     if (parts.length) {
       selectedInfoEl.innerHTML = parts.join(' · ');
       selectedInfoEl.classList.add('show');
@@ -1424,7 +1439,6 @@
     }
   }
 
-  // Реакция на выбор услуги
   document.querySelectorAll('input[name="service"]').forEach(r => {
     r.addEventListener('change', updateSelectedInfo);
   });
@@ -1446,7 +1460,6 @@
     successBlock.classList.add('show');
   }
 
-  /* ===== INIT ===== */
   renderCalendar();
   renderTimeSlots();
 </script>
